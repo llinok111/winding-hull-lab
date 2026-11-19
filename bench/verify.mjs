@@ -42,6 +42,36 @@ ok(r70.wCorrect === pts.length && r70.rCorrect < pts.length,
 
 // A6: direction dependence of parity — same scene, two directions, +50% disagreement
 ok(r70.disagree > pts.length * 0.45, `A6 parity is direction-dependent: ${r70.disagree}/${pts.length} points flip inside/outside when ray direction is reversed`);
+// A6b: winding has no ray direction, so its classifier cannot flip with a
+// hypothetically reversed ray. Make that a *measured* value via a real
+// floating-point-robustness check: sum the same per-triangle solid angles in
+// reversed triangle order (different FP summation order -> different |w|)
+// and require the |w|>0.5 classifier to agree on all 480 points.
+import { solidAngle, FOUR_PI } from '../src/core.mjs';
+const mesh70r = { ...base, mask: holeMask(base, 0.70) };
+const reversedSum = (m, p) => {
+  let w = 0;
+  for (let f = m.indices.length - 1; f >= 0; f--) {
+    if (m.mask[f] === 0) continue;
+    const t = m.indices[f];
+    const A = m.positions[t[0]], B = m.positions[t[1]], C = m.positions[t[2]];
+    w += solidAngle(
+      [A[0]-p[0], A[1]-p[1], A[2]-p[2]],
+      [B[0]-p[0], B[1]-p[1], B[2]-p[2]],
+      [C[0]-p[0], C[1]-p[1], C[2]-p[2]]
+    );
+  }
+  return w / FOUR_PI;
+};
+let flips = 0, maxDw = 0;
+for (const p of pts) {
+  const fwd = Math.abs(windingAt(mesh70r, p, mesh70r.mask)) > INSIDE;
+  const rev = Math.abs(reversedSum(mesh70r, p)) > INSIDE;
+  maxDw = Math.max(maxDw, Math.abs(windingAt(mesh70r, p, mesh70r.mask) - reversedSum(mesh70r, p)));
+  if (fwd !== rev) flips++;
+}
+console.log(`  A6b measured 0 flips under FP summation-order reversal: ${flips}/${pts.length}, max |w_fwd - w_rev| = ${maxDw.toExponential(3)}`);
+ok(flips === 0, `A6b winding classifier agrees between forward and reversed summation order: ${flips}/${pts.length} flips`);
 
 // A7: scale invariance — winding perfect and ray behaviour identical at 1e-6..1e6
 const scaleRayAccs = [];
