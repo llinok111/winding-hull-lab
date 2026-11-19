@@ -1,11 +1,2 @@
-node_modules/
-vendor/
-__pycache__/
-*.pyc
-.venv/
-*.log
-.DS_Store
-*.zip
-*.tar.gz
-*.tgz
-*.7z.model-patch.yml
+*.7z
+.model-patch.yml
