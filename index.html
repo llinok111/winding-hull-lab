@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>winding-hull-lab — solid-angle inside/outside for broken meshes</title>
+<style>
+  :root { --acc: #21c96a; --err: #ff5c5c; --dim: #8993a8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: #0c1017; color: #e6ebf4; }
+  header, #panel { padding: 14px 18px; }
+  header h1 { font-size: 18px; margin: 0 0 4px; }
+  header p { margin: 0; color: var(--dim); font-size: 13px; }
+  #layout { display: flex; gap: 14px; padding: 0 18px 18px; flex-wrap: wrap; }
+  #viewport { flex: 1 1 520px; min-width: 380px; height: 62vh; border: 1px solid #263044; border-radius: 10px; overflow: hidden; position: relative; }
+  canvas { width: 100%; height: 100%; display: block; }
+  #panel { flex: 0 0 300px; background: #121824; border: 1px solid #263044; border-radius: 10px; height: fit-content; }
+  .row { margin: 12px 0; }
+  label { display: block; font-size: 12px; color: var(--dim); margin-bottom: 4px; }
+  input[type=range] { width: 100%; }
+  .stat { font-size: 13px; margin: 8px 0; display: flex; justify-content: space-between; }
+  .acc { color: var(--acc); } .err { color: var(--err); }
+  .bar { height: 8px; border-radius: 4px; background: #1e2735; overflow: hidden; margin-top: 4px; }
+  .bar > i { display: block; height: 100%; background: var(--acc); }
+  .hint { color: var(--dim); font-size: 12px; margin-top: 10px; }
+  #legend { position: absolute; top: 10px; left: 10px; font-size: 12px; background: rgba(10,14,20,.75); padding: 6px 10px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>winding-hull-lab</h1>
+  <p>Solid-angle generalized winding number vs single-ray parity on a box with a hole in one face.</p>
+</header>
+<div id="layout">
+  <div id="viewport">
+    <div id="legend">green = |w| &gt; 0.5 (inside) · red = outside · drag to orbit</div>
+    <canvas id="cv"></canvas>
+  </div>
+  <div id="panel">
+    <div class="row">
+      <label>Hole fraction of +X face (wiggles — a ray that has to tunnel through the hole to some inside points)</label>
+      <input id="frac" type="range" min="0.06" max="0.77" step="0.01" value="0.28" />
+    </div>
+    <div class="stat">Winding accuracy <b id="wAcc" class="acc">—</b></div>
+    <div class="stat">Single-ray parity <b id="rAcc" class="err">—</b></div>
+    <div class="stat">Direction-dependent points <b id="dirDep">—</b></div>
+    <div class="hint">Same <code>src/core.mjs</code> that <code>bench/verify.mjs</code> asserts against — move the slider and watch the numbers recompute live.</div>
+  </div>
+</div>
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.1/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.1/examples/jsm/" } }
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

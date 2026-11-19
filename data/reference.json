@@ -1,0 +1,101 @@
+{
+  "variants": [
+    {
+      "id": 0,
+      "frac": 0.06,
+      "removedTris": 8,
+      "windingAcc": 1,
+      "rayAcc": 0.9583333333333334,
+      "dirDisagree": 0.08958333333333333
+    },
+    {
+      "id": 1,
+      "frac": 0.1,
+      "removedTris": 8,
+      "windingAcc": 1,
+      "rayAcc": 0.9583333333333334,
+      "dirDisagree": 0.08958333333333333
+    },
+    {
+      "id": 2,
+      "frac": 0.16,
+      "removedTris": 18,
+      "windingAcc": 1,
+      "rayAcc": 0.9541666666666667,
+      "dirDisagree": 0.14791666666666667
+    },
+    {
+      "id": 3,
+      "frac": 0.22,
+      "removedTris": 32,
+      "windingAcc": 1,
+      "rayAcc": 0.875,
+      "dirDisagree": 0.2375
+    },
+    {
+      "id": 4,
+      "frac": 0.28,
+      "removedTris": 32,
+      "windingAcc": 1,
+      "rayAcc": 0.875,
+      "dirDisagree": 0.2375
+    },
+    {
+      "id": 5,
+      "frac": 0.34,
+      "removedTris": 50,
+      "windingAcc": 1,
+      "rayAcc": 0.875,
+      "dirDisagree": 0.34375
+    },
+    {
+      "id": 6,
+      "frac": 0.4,
+      "removedTris": 50,
+      "windingAcc": 1,
+      "rayAcc": 0.875,
+      "dirDisagree": 0.34375
+    },
+    {
+      "id": 7,
+      "frac": 0.46,
+      "removedTris": 50,
+      "windingAcc": 1,
+      "rayAcc": 0.875,
+      "dirDisagree": 0.34375
+    },
+    {
+      "id": 8,
+      "frac": 0.52,
+      "removedTris": 72,
+      "windingAcc": 1,
+      "rayAcc": 0.7625,
+      "dirDisagree": 0.45625
+    },
+    {
+      "id": 9,
+      "frac": 0.58,
+      "removedTris": 72,
+      "windingAcc": 1,
+      "rayAcc": 0.7625,
+      "dirDisagree": 0.45625
+    },
+    {
+      "id": 10,
+      "frac": 0.64,
+      "removedTris": 72,
+      "windingAcc": 1,
+      "rayAcc": 0.7625,
+      "dirDisagree": 0.45625
+    },
+    {
+      "id": 11,
+      "frac": 0.7,
+      "removedTris": 98,
+      "windingAcc": 1,
+      "rayAcc": 0.7625,
+      "dirDisagree": 0.5770833333333333
+    }
+  ],
+  "totalPoints": 480
+}

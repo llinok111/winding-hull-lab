@@ -1,0 +1,24 @@
+{
+  "method": "winding vs single-ray parity per 480 queries",
+  "nSamples": 10,
+  "points": 480,
+  "cold": {
+    "windingMs": 55.457,
+    "rayMs": 46.757
+  },
+  "winding": {
+    "min": 45.273,
+    "median": 45.761,
+    "p95": 50.78,
+    "stddev": 1.831,
+    "rsd": 0.03925607791599253
+  },
+  "rayParity": {
+    "min": 28.41,
+    "median": 28.822,
+    "p95": 34.921,
+    "stddev": 1.873,
+    "rsd": 0.06374637546654668
+  },
+  "note": "median ratio winding/ray = 1.59 measured at width/3 mesh; numbers may shift on other hosts"
+}
