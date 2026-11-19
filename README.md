@@ -8,7 +8,7 @@ Upstream: none
 
 ```bash
 node tools/gen-sample.mjs   # deterministic scene + reference data (fixed seed)
-node bench/verify.mjs       # 11 assertions, exits 0
+node bench/verify.mjs       # 12 assertions, exits 0
 node bench/bench.mjs        # timing -> bench/result.json
 python3 -m http.server 4173 # open localhost:4173, drag the hole slider
 ```
@@ -22,7 +22,7 @@ A drop-in inside/outside classifier for **non-watertight** triangle meshes (hole
 | metric | winding | single-ray parity |
 |---|---|---|
 | 12 hole fractions (8→98 tris removed), 480 pts each | **480/480 correct (100%)** | 95.8% → 76.3% as hole grows |
-| direction reversibility (widest hole) | 0 flips | **277/480 points (57.7%) flip inside↔outside** |
+| direction reversibility (widest hole) | 0 flips (A6b: 0/480 under FP summation-order reversal) | **277/480 points (57.7%) flip inside↔outside** |
 | closed-mesh control (no hole) | max |w|−1 deviation **3.8e-15** | — |
 | per 480-query cost (10 samples) | median 45.8 ms, RSD 3.9% | median 28.8 ms, RSD 6.4% |
 
